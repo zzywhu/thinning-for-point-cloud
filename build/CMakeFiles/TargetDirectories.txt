@@ -1,0 +1,3 @@
+/home/zzy/thinning/build/CMakeFiles/thinning.dir
+/home/zzy/thinning/build/CMakeFiles/edit_cache.dir
+/home/zzy/thinning/build/CMakeFiles/rebuild_cache.dir

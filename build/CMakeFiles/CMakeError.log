@@ -1,0 +1,65 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/zzy/thinning/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_fdd8b/fast && /usr/bin/make  -f CMakeFiles/cmTC_fdd8b.dir/build.make CMakeFiles/cmTC_fdd8b.dir/build
+make[1]: Entering directory '/home/zzy/thinning/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_fdd8b.dir/src.cxx.o
+/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++11 -o CMakeFiles/cmTC_fdd8b.dir/src.cxx.o -c /home/zzy/thinning/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_fdd8b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fdd8b.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_fdd8b.dir/src.cxx.o -o cmTC_fdd8b 
+CMakeFiles/cmTC_fdd8b.dir/src.cxx.o: In function `main':
+src.cxx:(.text+0x3e): undefined reference to `pthread_create'
+src.cxx:(.text+0x4a): undefined reference to `pthread_detach'
+src.cxx:(.text+0x56): undefined reference to `pthread_cancel'
+src.cxx:(.text+0x67): undefined reference to `pthread_join'
+src.cxx:(.text+0x7b): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_fdd8b.dir/build.make:98: recipe for target 'cmTC_fdd8b' failed
+make[1]: *** [cmTC_fdd8b] Error 1
+make[1]: Leaving directory '/home/zzy/thinning/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_fdd8b/fast' failed
+make: *** [cmTC_fdd8b/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/zzy/thinning/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_44a0e/fast && /usr/bin/make  -f CMakeFiles/cmTC_44a0e.dir/build.make CMakeFiles/cmTC_44a0e.dir/build
+make[1]: Entering directory '/home/zzy/thinning/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_44a0e.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=pthread_create -std=gnu++11 -o CMakeFiles/cmTC_44a0e.dir/CheckFunctionExists.cxx.o -c /home/zzy/thinning/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_44a0e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_44a0e.dir/link.txt --verbose=1
+/usr/bin/c++  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_44a0e.dir/CheckFunctionExists.cxx.o -o cmTC_44a0e  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_44a0e.dir/build.make:98: recipe for target 'cmTC_44a0e' failed
+make[1]: *** [cmTC_44a0e] Error 1
+make[1]: Leaving directory '/home/zzy/thinning/build/CMakeFiles/CMakeTmp'
+Makefile:127: recipe for target 'cmTC_44a0e/fast' failed
+make: *** [cmTC_44a0e/fast] Error 2
+
+
+
